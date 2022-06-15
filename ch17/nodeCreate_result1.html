@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    input[type=button]{
+      background-color: #000;
+      color:#fff;
+      border:none;
+      padding: 6px 15px;
+    }
+
+    #subject { width: 200px; padding: 4px 10px;}
+
+    li{margin-bottom: 12px; display: inline-block; min-width: 200px;}
+    li>button { float:right;}
+  </style>
+</head>
+<body>
+  <h1>Web Programming</h1>
+  <p>공부할 주제를 기록해 보세요.</p>
+  <div>
+    <input type="text" id="subject">
+    <input type="button" onclick="newReg();" value="추가">
+  </div>
+  <div>
+    <ul id = "itemList">
+      <!--요소가 추가될 구역-->
+    </ul>
+  </div>
+
+  <script>
+    const divList = document.querySelector('#itemList');
+    const sub = document.querySelector('#subject');
+
+    function newReg(){
+      const newItem = divList.appendChild(document.createElement('li'));
+      const btn = document.createElement('button');
+      btn.appendChild(document.createTextNode('삭제'));
+
+      newItem.append(sub.value, btn);
+       
+      sub.value=""; //다음 입력을 위해 텍스트 필드 비우기
+
+      btn.addEventListener('click', function(){
+        if(this.newItem) {this.newItem.removeChild(newItem);}
+      })
+      
+    }
+  </script>
+</body>
+</html>

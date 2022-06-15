@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>이벤트 객체 추가하기</title>
+</head>
+<body>
+  <h1>DOM을 공부합시다.</h1>
+  <button onclick="addContents();">더 보기</button>
+  <div id="info"></div>
+  <script>
+    const imgSrc ="https://i.picsum.photos/id/194/500/300.jpg?hmac=uIDJwzVjhxTcUUQQZGkZ7niv6azJW5Qi-3NC_X2zhTo"; 
+    const imgAlt = '이미지 정보'; //<img src="" alt="이미지에 대한 정보를 표시하는 곳">
+
+    const divInfo = document.querySelector('#info');
+    function addContents() {
+      const newP = divInfo.appendChild(document.createElement('p'));
+      const newImg = divInfo.appendChild(document.createElement('img'));
+
+      newP.append('DOM은 Document Object Model의 줄임말입니다.');
+      newImg.src = imgSrc;
+      newImg.alt = imgAlt;
+    }
+
+    function addContents2() { // innerHTML으로 요소 추가하기. 보기에 간단하지만 이벤트 추가하기가 쉽지않음.
+      div.innerHTML = `
+        <p>DOM은 Document Object Model의 줄임말입니다.</p>
+        <img src="${imgSrc}" alt="${imgAlt}";>
+      `;
+      divInfo.append(div);
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    function sum(n1, n2) {
+      let result = 0;
+      result =  n1 + n2;
+      return result;
+    }
+    console.log(sum(n1, n2)); // 30
+
+    function sum2(n1, n2) {
+      let result = 0;
+      setTimeout(function(){
+        result = n1 + n2;
+      }, 1000); // 1초라는 딜레이가 생겼기 떄문에
+      return result; // 위의 식을 수행하지 않고 바로 return 해버린다. 그래서 출력값은 0
+    }
+    console.log(sum2(10, 20)); // 0
+  </script>
+</body>
+</html>

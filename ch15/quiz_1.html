@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    //입력된 값들이 같으면 곱하고, 다르면 더하는 함수식을 작성하시오.
+    const n1 = Number(prompt('값 1'));
+    const n2 = Number(prompt('값 2'));
+
+    function sumMulti(x,y){
+      return x === y ? x*y : x+y; // 삼항식 : 두가지 조건은 if문 보다 삼항식이 더 유용할지도?
+    }
+    const result = sumMulti(n1,n2);
+    console.log(result);
+
+  </script>
+</body>
+</html>

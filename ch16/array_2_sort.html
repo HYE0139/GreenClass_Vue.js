@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    const arr = [22, 6, 2, 9, 5, 3, 1, 7];
+    arr.sort(function(a, b) {
+      return b - a; // 내림차순
+          // a - b; // 오름차순
+    });
+    //arr.sort(); >> 문자열로 인식하여 2 다음에 22가 올 수 있음. 정확하게 하려면 위 방법 사용.
+    console.log(arr.toString());
+  </script>
+</body>
+</html>

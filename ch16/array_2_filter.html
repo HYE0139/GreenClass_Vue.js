@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    const arr = [4, 20, 55, 32, 99, 47, 65, 1];
+    const arr2 = arr.filter(item => {
+      if(item < 40) {return true;}
+      // 배열 중 40 미만의 값들만 불러오기.
+    });
+    // const arr2 = arr.filter(item => item < 40)
+    //filter : 테스트를 통과한 요소로 이루어진 새로운 배열을 반환.
+
+    console.log(arr);
+    console.log(arr2);
+
+    // 짝수만 반환하기
+    const arr3 = arr.filter( aaa => !(aaa%2));
+    console.log(arr3);
+  </script>
+</body>
+</html>

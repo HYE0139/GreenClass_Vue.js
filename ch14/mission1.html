@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    //prompt, while을 활용한 숫자 더하기
+
+  var sum = 0;
+  while(true) {//true가 될때까지 반복 true = 0
+    var n = prompt('입력된 숫자는 더해집니다.(종료 0)');//반복하여 출력
+    if( n === '0' ){
+      break; //n이 0이 되면 멈춤
+    }
+    var val = parseInt(n);//n에 입력된 값을 정수화
+    if(val){
+      sum += val;
+    }
+  }
+  document.write(`모두 더한 값 : ${sum}`);
+  </script>
+</body>
+</html>

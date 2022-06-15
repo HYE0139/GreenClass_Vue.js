@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    const myArr = {
+      '0' : 10,
+      '1' : 43,
+      '2' : 22,
+      '3' : 38,
+      '4' : 17,
+      '5' : 56,
+      '6' : 47,
+      'length' : 7,
+      'forEach' : function(cb) {
+        for(let i = 0; i<this.length; i++){
+          const val = this[i];
+          cb(val,i)
+        } 
+      },
+
+      'map' : function(cb) { // 각 배열값에 함수를 
+        const tempArr = [];
+        for(let i=0; i<this.length; i++){
+          tempArr.push(cb(this[i], i));
+        }
+        //const returnVal = cb(this[i], i);
+        // tempArr.push(returnVal);
+        return tempArr;
+      }
+    }
+
+    const arr2 = myArr.map(function(item, idx) {
+      
+      console.log(idx);
+      return item + 2;
+    });
+
+    console.log(arr2.toString());
+
+    //myArr에 4번째 값 이후의 값들은 2를 곱해주고 새로운 배열을 만들어보자
+    const arr3 = myArr.map(function(item, idx) {
+      return idx <= 3 ? item : item*2;
+    });
+    console.log(arr3);
+  </script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+
+    (function () {    
+      const n1 = Number(prompt('값 1'));
+      const n2 = Number(prompt('값 2'));
+      //입력된 두 수를 비교하여 더 큰 숫자를 알림창에 표시하시오.
+     //예) 1과 5를 입력 > '5'(이)가 '1'보다 큽니다.
+
+      if(isNaN(n1) || isNaN(n2)){
+        alert('숫자를 입력해 주세요.');
+        return;
+      }
+
+      function compare (n1, n2){
+        if(n1 === n2){
+        alert(`같은 값입니다.`);
+        return;
+        }
+        const bigNum = n1 > n2 ? n1 : n2; // n1이 n2 보다 큰 값일 경우, bigNum에 n1 = true 값이 저장됨
+        const smallNum = n1 < n2 ? n1 : n2;
+
+        alert(`${bigNum}(이)가 ${smallNum}보다 큽니다.`);
+      }
+
+     compare(Number(n1),Number(n2));
+    })(); // 위 함수식을 하나의 함수로 만들어 () 호출
+
+  </script>
+</body>
+</html>

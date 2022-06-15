@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // 타입이 다른 것들 사이에 사용된 연산자는 형변환을 실행한다.
+    // '현재시각은' = string(문자열), now = 객체 >> now = string 변환 하여 합침.
+
+    const now = new Date();
+    now.myFn = function (){
+      alert('test');
+    }
+    now.myFn();
+    document.write('현재 시각은' + now.toLocaleString());
+    // toString() : 기본적으로 제공되는 메소드 함수. 
+    // toLocaleString() : 현재 로컬 형식으로 바꿔주는 메소드 함수.
+    
+  </script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    //1
+    setTimeout(function(){
+      console.log('A');
+      //2
+      setTimeout(function(){
+        console.log('B');
+        //3
+        setTimeout(function(){
+          console.log(`콜백 지우기`);
+        }, 2000)
+      },2500)
+    },3000)
+
+    // 시간과 관계없이 가장 바깥에 있는 요소부터 시작함 
+    // 위 함수는 유지보수가 어렵고 콜백지옥이라 불린다! 이를 해결하기 위해 promise를 사용
+  </script>
+</body>
+</html>

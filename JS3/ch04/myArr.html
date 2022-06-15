@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+
+    // myArr : 유사배열 객체를 생성해서 값을 대입한 내용
+    const myArr = {
+      '0' : 10,
+      '1' : 43,
+      '2' : 22,
+      '3' : 38,
+      '4' : 17,
+      '5' : 56,
+      '6' : 47,
+      'length' : 7,
+      //유사배열객체는 상속받은 Array.prototype 메서드가 없어서
+      //아래와 같이 직접 생성해서 사용할 수 있다.
+      'forEach' : function(cb) { // 배열 요소 각각에 대해 함수를 실행한다.
+        for(let i = 0; i<this.length; i++){
+          const val = this[i]; // 배열길이만큼 반복하여 해당객체의 인덱스로 활용
+          cb(val,i) // cb는 곧, 외부에서 이 함수를 호출하면서 담은 매개변수가 된다.
+          // >> 현재 forEach를 호출한 곳의 매개변수는 => fnSum(item, idx, arr)
+          // myArr[i], i 는 fnSum()의 변수자리로 들어가서 해당 함수를 실행하게 된다.
+          // sum += item => sum += myArr[i] 즉, 각 배열의 값을 forEach로 반복호출하여 더한 값을 sum에 저장하는것
+        } 
+      },
+
+      'map' : function(cb) { // 배열 요소 각각에 대해 함수를 실행한 값을 새로운 배열로 만들어낸다.
+        const tempArr = []; // [] : 배열을 담을 곳을 만듦
+        for(let i=0; i<this.length; i++){
+          tempArr.push(cb(this[i], i)); // this = myArr
+          // 배열길이만큼 반복하면서 만들어진 새로운 배열 요소들은 tempArr에 저장한다.
+          // 현재 cb는 function(item, idx){ return idx <= 3 ? item : item*2;}
+        }
+        //const returnVal = cb(this[i], i);
+        // tempArr.push(returnVal);
+        return tempArr;
+      },
+
+      'filter' : function(cb) { // 조건식에 통과한 요소만을 모아 새로운 배열로 반환
+        const tempArr = []; // 새로운 요소를 담을 공간
+        for(let i=0; i<this.length; i++){
+          if(cb(this[i], i)) { // 매개변수로 들어온 함수의 조건식에 통과되면
+            tempArr.push(this[i]); // 새로운 배열요소에 추가하기
+          }
+        }
+        return tempArr;
+      },
+      
+      'toString' : function(){
+        let str = '[';
+        for(let i=0; i<this.length; i++) {
+          str += i < this.length - 1 ? `${this[i]}, ` : `${this[i]}]`;
+        }
+        return str;
+      }
+    }
+
+    // --------- 사용예제 ---------
+
+    let sum = 0;
+    function fnSum(item, idx, arr) {
+      sum += item; 
+    }
+    myArr.forEach(fnSum); // myArr 이 가지고 있는 배열만큼 fnSum 함수를 반복
+    console.log(`sum : ${sum}`);
+    console.log('---------------------forEach');
+
+    const arr2 = myArr.filter(function(item, idx) {
+      return item % 2 === 0;
+    });
+    console.log(arr2.toString());
+    console.log('---------------------filter');
+
+    const arr3 = myArr.map(function(item, idx) {
+      return idx <= 3 ? item : item*2;
+    });
+    console.log(arr3);
+    console.log('---------------------map');
+
+
+    console.log(myArr.toString());
+    console.log('---------------------toString');
+
+
+
+  </script>
+</body>
+</html>

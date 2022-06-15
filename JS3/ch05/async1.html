@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // 비동기 : 특정 코드의 실행이 완료될 떄까지 기다리지 않고
+    // 다음 코드를 먼저 수행하는 자바스크립트의 특성
+
+    console.log('A');
+    console.log('B');
+    console.log('C');
+    console.log('D'); // 작성 순서대로 나타난다. A, B, C, D
+    console.log('------------');
+
+    setTimeout(function(){
+      console.log('A');
+    }, 3000);
+
+    setTimeout(function(){
+      console.log('B');
+    }, 2500);
+
+    setTimeout(function(){
+      console.log('C');
+    }, 2000);
+
+    setTimeout(function(){
+      console.log('D');
+    }, 1000);
+    // 작성순서와 상관없이 가장 빠른 실행속도인것 부터 먼저 출력한다. D, C, B, A
+
+  </script>
+</body>
+</html>

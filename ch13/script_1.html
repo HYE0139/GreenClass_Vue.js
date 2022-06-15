@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1 id = "heading" style="color:blue">자바스크립트</h1>
+  <p id="text">위 텍스트를 클릭해 보세요.</p>
+  <script>
+    //객체 : 속성(명사)과 메서드(동작), 아래 document~는 메서드
+    var heading = document.querySelector('#heading');
+    heading.onclick = function() {
+      heading.style.color = 'red';
+    }
+  </script>
+  <!--다른 파일에서 작성해서 불러올 수 있다 (#text 의 색깔을 변경함)-->
+  <script src="change_color.js"></script>
+</body>
+</html>

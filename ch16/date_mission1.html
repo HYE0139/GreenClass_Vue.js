@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    const now = new Date(); //현재 날짜
+    const writeDay = new Date('2022-05-16 20:20:00'); //지정날짜
+
+    function getPassedInfo(sDate, eDate) { //작성시간, 현재시간
+      const sDateMilSec = sDate.getTime(); //sDate의 시간 = writeDay 작성날짜
+      const eDateMilSec = eDate.getTime(); //eDate의 시간 = now 현재시간
+      const passedSec = (eDateMilSec - sDateMilSec) / 1000;
+      // 각 시간을 millsec 단위로 불러와서 계산 > (현재시간 - 작성시간) / 1000
+
+      if(passedSec < 3599) { // 3599초 = 59분 59초 전 / 1시간 미만
+        const min = Math.floor(passedSec / 60); //60초 = 1분
+        return `${min}분 전`;
+      } else if (passedSec < 86399) { // 86399초 = 23시간 59분 59초 / 1일 미만
+        const hour = Math.round(passedSec / 3600); //3600초 = 1시간
+        return `${hour}시간 전`;
+      } else if (passedSec < 1295999) { // 1295999초 = 14일 23시간 59분 59초 / 한달미만
+        const date = Math.round(passedSec / 86400); // 86400초 = 1일
+        return `${date}일 전`;
+      } else if (passedSec < 7862399) { // 7862399초 = 90일 23시간 59분 59초// 3달 미만
+        const mon = Math.round(passedSec / 2592000); // 2592000초 = 30일
+        return `${mon}달 전`;
+      } else {// 90일 이상 지난 게시글
+        const year = sDate.getFullYear();
+        const mon = fillZero(sDate.getMonth()+1);
+        const date = fillZero(sDate.getDate());
+        return `${year} - ${mon} - ${date}`;
+      }
+    }
+
+    function fillZero(val){
+      return ('0' + val).slice(-2);
+    }
+
+    const result = getPassedInfo(writeDay, now); // 작성시간, 현재시간
+    console.log(result);
+  </script>
+</body>
+</html>
