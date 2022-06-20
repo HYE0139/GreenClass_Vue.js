@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <P>현재 시각 <span id="current" class="display"></span></P>
+    <script>
+        let cnt = 0;
+        setInterval(displayNow,1000); //1초마다 함수 호출
+
+
+
+        function displayNow(){
+
+            const nowDate = new Date();
+            const hour = nowDate.getHours(); //현재시간
+            const min = nowDate.getMinutes(); //현재 분
+            const sec = nowDate.getSeconds(); // 현재 초
+            const week = new Array('일', '월', '화', '수', '목', '금', '토');
+
+            let to = (hour < 12) ? "AM" : "PM"; 
+           
+            const currentTime = to + " " + hour + ":" + addzero(min) + ":" + addzero(sec) + " " + week[nowDate.getDay()];
+            document.querySelector('#current').innerText = currentTime;
+
+            /*const currentTime = now.toLocaleTimeString(); >> 로컬에 맞는 현재 시간*/
+        }
+
+        function addzero(num) { //1자리수의 숫자인 경우 앞에 0을 붙여준다.
+            if(num < 10) { num = "0" + num; }
+            return num;
+        }
+
+
+    
+        
+        
+    </script>
+</body>
+</html>

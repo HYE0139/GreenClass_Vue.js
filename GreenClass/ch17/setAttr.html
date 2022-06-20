@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #main {width: 500px; height:300px;}
+        #main > img {width:100%;}
+        #sub {width:500px; height:100px; display: flex;}
+        #sub > img {flex-grow: 1;}
+    </style>
+</head>
+<body>
+    <!--메인 이미지 아래 서브 이미지 클릭시 메인이미지 바뀌게-->
+    <div id="main">
+        <img src="https://i.picsum.photos/id/151/500/300.jpg?hmac=dX2RnfyWcopHuolYAeJUHBdbZhmhTP0GMoLDNGIszn0">
+    </div>
+    <div id="sub">
+        <img src="https://i.picsum.photos/id/151/500/300.jpg?hmac=dX2RnfyWcopHuolYAeJUHBdbZhmhTP0GMoLDNGIszn0">
+        <img src="https://i.picsum.photos/id/528/500/300.jpg?hmac=9qvYZfNGJTX82_taXmQ_IESQLHqlrDTYOeQxY_Tl9Kk">
+        <img src="https://i.picsum.photos/id/702/500/300.jpg?hmac=MPmHroUAOxep5bWXTmGvVqMMNMmF9qEHCmRsGwTyBXs">
+    </div>
+    <script>
+        const imgMain = document.querySelector('#main > img'); //#main 의 img 를 선택
+
+        const subImgs = document.querySelectorAll('#sub > img'); //#sub 의 img 를 선택
+        subImgs.forEach(item => { // forEach(); 파라미터로 콜백 함수를 받는다. 
+            item.onclick = function() { //subImgs 클릭 시 함수 호출
+                imgMain.src = this.src; // this = item : 자기자신을 가리킨다.
+            }
+        });
+    </script>
+</body>
+</html>

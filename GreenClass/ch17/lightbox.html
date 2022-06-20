@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        ul{width:640px;}
+        li{list-style:none; display: inline-block;}
+        .pic{width:200px; cursor: pointer;}
+        img{display: inline-block;}
+        #lightbox{
+            display: none;
+            width:100%;
+            height:100%; 
+            background-color: rgba(204, 204, 204, 0.377); 
+            position: absolute; top: 0; left:0;}
+
+        #lightboxImage{
+            display: block;
+            align-items: center;
+            position: absolute;
+            top:50%;
+            left:50%;
+            transform: translate(-50%, -50%);
+        }
+    </style>
+</head>
+<body>
+    <div class="row">
+        <ul>
+            <li><img class ="pic" src="https://i.picsum.photos/id/194/500/300.jpg?hmac=uIDJwzVjhxTcUUQQZGkZ7niv6azJW5Qi-3NC_X2zhTo"></li>
+            <li><img class ="pic" src="https://i.picsum.photos/id/1054/500/300.jpg?hmac=cvwYiAsZ8SplkpM6F0Rm8i9DCt3J64ld9-sy3jw_xFs"></li>
+            <li><img class ="pic" src="https://i.picsum.photos/id/151/500/300.jpg?hmac=dX2RnfyWcopHuolYAeJUHBdbZhmhTP0GMoLDNGIszn0"></li>
+            <li><img class ="pic" src="https://i.picsum.photos/id/528/500/300.jpg?hmac=9qvYZfNGJTX82_taXmQ_IESQLHqlrDTYOeQxY_Tl9Kk"></li>
+            <li><img class ="pic" src="https://i.picsum.photos/id/702/500/300.jpg?hmac=MPmHroUAOxep5bWXTmGvVqMMNMmF9qEHCmRsGwTyBXs"></li>
+            <li><img class ="pic" src="https://i.picsum.photos/id/1075/500/300.jpg?hmac=5DhRFK2dTT-URjGdj3Fgb8fBZOGnqy-lIR1gIm_JJ3U"></li>
+        </ul>
+    </div>
+
+    <div id="lightbox">
+        <img src="" alt="" id="lightboxImage">
+    </div>
+
+    <script>
+        const pics = document.querySelectorAll(".pic");
+        const lightbox = document.querySelector("#lightbox");
+        const lightboxImage = document.querySelector("#lightboxImage");
+
+        /*for(i = 0; i<pics.length; i++){ 반복문처리
+            pics[i].addEventListener('click', showLightbox);
+        }*/
+        const showimg = document.querySelectorAll('.pic');//.pic을 모두 선택하여 배열화
+        showimg.forEach(item => { //콜백함수 처리로 각 이미지 클릭마다 함수호출
+            item.addEventListener('click', showLightbox);
+        });
+     
+        function showLightbox() { // 클릭한 이미지가 보이는 영역
+            const bigLocation = this.src;
+            lightboxImage.setAttribute('src', bigLocation);
+            lightbox.style.display = 'block';
+        }
+
+
+        lightboxImage.onclick = function(){
+            lightbox.style.display ='none';
+        }
+
+        
+
+    </script>
+</body>
+</html>

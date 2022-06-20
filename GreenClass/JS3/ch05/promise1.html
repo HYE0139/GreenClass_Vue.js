@@ -25,14 +25,15 @@
     */
 
     const p1 = new Promise(function (resolve, reject) {
+      
       resolve('test');
+     
+      
     });
 
     p1.then(function (result) {
-      console.log(`resolveMethod: : ${result}`);
-    }).catch(function (result) {
-      console.log(`catchMethod: : ${result}`);
-    });
+      console.log(`resolveMethod: : ${rsult}`);
+    }).catch(error => alert(error.message));
   </script>
 </body>
 </html>

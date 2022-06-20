@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="container">
+        <h1>DOM을 공부합시다.</h1> 
+        <!--호출 후 this.onclick='(빈칸)'이 실행 되면서 최초 한번만 이벤트 발생
+            지우면 여러번 호출 가능-->
+        <a href="#" onclick="addP();">더보기</a>
+        <div id="info"></div>
+    </div>
+    <script>
+        const divInfo = document.querySelector('#info');
+        function addP() {
+            if(divInfo.innerHTML === ''){
+                const newP = document.createElement('p');//createElement() : 엘레멘트를 추가하는 함수
+                const txtNode = document.createTextNode('DOM은 Document Object Model의 줄임말입니다.');//문자열추가
+                newP.appendChild(txtNode); 
+                document.querySelector('#info').appendChild(newP);
+            } else {
+                divInfo.innerText = '';
+            }
+        }
+
+        //append : 선택된 요소 뒤에 새로운 요소를 추가한다.
+        //appendChild : append와 기능은 동일하나 객체(변수명)만 가능!
+        //prepend : 선택된 요소의 첫번째에 새로운 요소를 추가한다.
+        
+    </script>
+</body>
+</html>
