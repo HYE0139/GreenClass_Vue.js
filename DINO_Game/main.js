@@ -6,7 +6,7 @@ canvas.height = window.innerWidth - 100;
 
 
 var img1 = new Image();
-img1.src = 'dino.png';
+img1.src = 'imgs/dino-stationary.png';
 const dino = { //캐릭터
     x : 10,
     y : 200,
@@ -22,7 +22,7 @@ const dino = { //캐릭터
 
 
 var img2 = new Image();
-img2.src = 'cactus.png'
+img2.src = 'imgs/cactus.png'
 
 class Cactus { //장애물
     constructor(){
@@ -96,4 +96,3 @@ function attackEvent(dino, cactus){
 
 
 executeFrame();
-
