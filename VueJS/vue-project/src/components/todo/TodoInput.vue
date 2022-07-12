@@ -17,7 +17,7 @@ export default {
     },
 
     methods: {
-        addTodo() {
+        addTodo() {// trim = 문자열 좌우에서 공백을 제거
             if(this.newTodoItem.trim() === '') {  
                 this.$emit('noInputValue');
             } else {
