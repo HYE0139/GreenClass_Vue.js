@@ -2,7 +2,7 @@
   <div id="app">
     <TodoHeader></TodoHeader>
     <TodoInput @childAddTodo="addTodo" @noInputValue="showModal" ></TodoInput>
-    <TodoList :propsItems="todoItems" @childRemoveTodo="removeTodo"></TodoList>
+    <TodoList :propsItems="todoItems" @childRemoveTodo="removeTodo" ></TodoList>
     <TodoFooter @clearTodo="clearTodo"></TodoFooter>
   </div>
   <AlertModal :show="modalShow" @close="showModal" header="알림창" body="내용을 입력해주세요."></AlertModal>
@@ -18,6 +18,8 @@ import TodoInput from './components/todo/TodoInput.vue';
 import TodoList from './components/todo/TodoList.vue';
 import TodoFooter from './components/todo/TodoFooter.vue';
 import AlertModal from './components/common/AlertModal.vue';
+import axios from 'axios';
+import DateUtils from './utils/DateUtils.js';
 
 export default {
   name: 'App',
@@ -32,32 +34,54 @@ export default {
   methods: {
     addTodo(todoItem) { // todoItem => TodoInput.vue에서 받아온 value
       //localStorage.setItem(todoItem, todoItem);
-      this.todoItems.push({
+      /*this.todoItems.push({
         key: this.cnt++,
         value: todoItem
-      });
+      });*/
+      const param = {
+        'todo' : todoItem
+      };
+
+      axios.post('/todo/index', param)
+      .then(res => { // 200 : 통신성공!
+        if(res.status === 200 && res.data) {
+          const item = {
+            'itodo' : res.data.result,
+            'todo' : todoItem,
+            'created_at' : DateUtils.getTimestamp(new Date())
+          }
+          this.todoItems.push(item);
+        }
+      })
 
     },
+
+    
 
     showModal() {
       this.modalShow = !this.modalShow;
     },
 
     removeTodo(key) {
-      //localStorage.setItem(todoItem);
       this.todoItems.forEach((item,idx) => {
-        if(item.key === key) {
+        if(item.itodo === key) {
           this.todoItems.splice(idx, 1); //해당 인덱스 1개만 삭제
+          axios.delete(`/todo/index/${item.itodo}`)
+          .then(res=> {
+            console.log(res);
+          });
         }
       })
 
     },
 
     clearTodo() {
-      this.todoItems.splice(0);
-      //localStorage.clear();
-      this.cnt = 0;
-
+      axios.delete(`/todo/index`)
+      .then(res => {
+        if(res.status === 200 && res.data.result) {
+          this.todoItems.splice(0);
+        }
+      });
     },
 
     changeValue() {
@@ -69,6 +93,16 @@ export default {
   },
 
   created() { // 리스트 형식으로 나열
+  axios.get('/todo/index')
+  .then(res=> {
+    if(res.status === 200 && res.data.length > 0) {
+      res.data.forEach(item => {
+        this.todoItems.push(item);
+      });
+    }
+    console.log(res);
+  });
+/*
    const json = localStorage.getItem("todoItems");
    if(json) {
     const todoItems = JSON.parse(json);
@@ -77,7 +111,7 @@ export default {
     });
     const cnt = localStorage.getItem("cnt");
     this.cnt = cnt;
-   }
+   }*/
   },
 
   components: {
@@ -88,7 +122,7 @@ export default {
     AlertModal
   },
 
-// watch : 인스턴스의 데이터 변경을 관찰하는 속성
+/* watch : 인스턴스의 데이터 변경을 관찰하는 속성
   watch: {
     todoItems: {// 감시할 대상
       deep: true, // 중첩 데이터의 변경값을 확일할 때 true
@@ -97,7 +131,7 @@ export default {
       }
     }
   }
- 
+ */
 }
 </script>
 
