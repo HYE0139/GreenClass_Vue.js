@@ -23,6 +23,17 @@ export default {
             
     },
     methods: {
+        movieInfo(){ // 영화 상세 정보 불러오기
+            const movieCd = this.items.movieCd;
+            this.getData(movieCd);
+            
+        },
+        async getData(movieCd) {      
+        const data = await this.getMovieByInfo(movieCd);
+        this.info = data.movieInfoResult.movieInfo;
+        console.log(this.info);
+        },
+
         numberComma(num) {
                 return String(num).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
         },
@@ -31,7 +42,8 @@ export default {
             const week = new Array('일', '월', '화', '수', '목', '금', '토');
             const today = week[new Date(day).getDay()];
             return today;
-        }
+        },
+        
            
     }
 }

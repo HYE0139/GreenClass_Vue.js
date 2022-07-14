@@ -7,7 +7,7 @@ export default {
             baseUrl: 'http://www.kobis.or.kr/kobisopenapi/webservice/rest/',
             boxOfficeByDay: 'boxoffice/searchDailyBoxOfficeList.json',
             boxOfficeByWeek: 'boxoffice/searchWeeklyBoxOfficeList.json',
-            boxOfficeByInfo: 'movie/searchMovieInfo.json',
+            MovieByInfo: 'movie/searchMovieInfo.json',
         }
     },
     methods: {
@@ -36,6 +36,14 @@ export default {
             const url = this.baseUrl + this.boxOfficeByWeek;
             return await this.$api(url, parameter);
             // 실행된 결과값은 BoxOfficeByDay.vue 의 list로 반환된다.
+        },
+        async getMovieByInfo(movieCd) {//영화 상세 정보 불러오기
+            const parameter = {
+                key: this.key,
+                movieCd
+            }
+            const url = this.baseUrl + this.MovieByInfo;
+            return await this.$api(url, parameter);
         },
         
         getOnlyDateStr(date) {
