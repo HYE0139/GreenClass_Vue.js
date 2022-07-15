@@ -6,7 +6,11 @@
   </div>
     <rank-table :list="list"/>
 </template>
-
+<!--
+    BoxOfficeByDay.vue + BoxOfficeByWeek.<template>
+      
+    중복된 소스가 있어 한 파일로 합침
+-->
 
 <script>
 import RankTable from '../components/boxOffice/RankTable.vue';
