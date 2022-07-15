@@ -5,7 +5,7 @@
 import { createStore } from 'vuex';
 
 export default createStore({
-  state() {
+  state() { //각각의 컴포넌트에서 공통으로 참조하기 위한 변수를 정의하는 부분
     return {
       count: 0,
       cart: [
@@ -17,14 +17,19 @@ export default createStore({
       ],
     };
   },
-  getters: { // state에 담을 데이터를 가공해야할 경우 getters에서 메서드 생성 후 리턴
+  getters: { 
+    // state에 담을 데이터를 가공해야할 경우 getters에서 메서드 생성 후 리턴
+    // 각 컴포넌트의 계산된 속성 (computed) 의 공통 속성으로 정의
     cartCount: (state) => {
       return state.cart.length;
     }
   },
-  mutations: {
+  mutations: { //State 변경을 담당, 외부에서 state값을 변경할 때 여기서 함수를 만들어서 적용
     increment(state){
       state.count++;
+    },
+    setCount(state, val) {
+      state.count = val;
     }
   },
   actions: {
