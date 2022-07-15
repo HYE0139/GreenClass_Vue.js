@@ -1,3 +1,7 @@
+<!--
+    박스오피스 순위 정보
+    Ranktable 에서 v-for:반복문을 사용했다.
+-->
 <template>
     <tr>
         <td>{{ items.rank }}</td>
@@ -11,7 +15,7 @@
 
 <script>
 export default {
-    props: {
+    props: { // 부모요소에게 보낼 데이터
         items:Object
     },
     computed: {
