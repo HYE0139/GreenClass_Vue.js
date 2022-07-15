@@ -1,3 +1,6 @@
+<!--
+  view 의 요소들이 합쳐지는 곳
+-->
 <template>
   <div>
     <Header /> 
