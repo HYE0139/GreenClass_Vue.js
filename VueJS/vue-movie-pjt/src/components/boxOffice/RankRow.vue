@@ -2,7 +2,8 @@
     <tr>
         <td>{{ items.rank }}</td>
         <td @click="movieInfo">{{ items.movieNm }}</td>
-        <td>{{ items.openDt }}, {{getToday(items.openDt)}}</td>
+        <td v-if="items.openDt !== ' ' ">{{ items.openDt }}, {{getToday(items.openDt)}}</td>
+        <td v-else>개봉정보 없음</td>
         <td>{{ getAudiAcc }}</td>
         <td>{{ getSalesAcc }}</td>
     </tr>
