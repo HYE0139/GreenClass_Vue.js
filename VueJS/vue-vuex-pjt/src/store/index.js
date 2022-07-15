@@ -8,9 +8,19 @@ export default createStore({
   state() {
     return {
       count: 0,
-    }
+      cart: [
+        {
+          product_id: 1,
+          product_name: '아이폰 거치대',
+          category: 'A',
+        }
+      ],
+    };
   },
-  getters: {
+  getters: { // state에 담을 데이터를 가공해야할 경우 getters에서 메서드 생성 후 리턴
+    cartCount: (state) => {
+      return state.cart.length;
+    }
   },
   mutations: {
     increment(state){
