@@ -1,5 +1,6 @@
 import axios from 'axios';
-
+// axios를 이용한 함수를 모아놓은 곳. 
+// main.js에서 mixins로 import 되어서 다른 파일에서 바로 사용할 수 있다.
 export default {
     data() {
         return{
