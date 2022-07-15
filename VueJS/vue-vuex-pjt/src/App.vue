@@ -1,7 +1,8 @@
 <template>
   <nav>
     <router-link to="/">Home</router-link> |
-    <router-link to="/StoreAccess">Store</router-link>
+    <router-link to="/StoreAccess">Store</router-link> |
+    <router-link to="/StoreAccess2">Store2</router-link>
   </nav>
   <router-view/>
 </template>

@@ -12,6 +12,11 @@ const routes = [
     name: 'StoreAccess',
     component: () => import('../views/StoreAccess.vue'),
   },
+  {
+    path: '/StoreAccess2',
+    name: 'StoreAccess2',
+    component: StoreAccess2,
+  },
 ];
 
 const router = createRouter({
