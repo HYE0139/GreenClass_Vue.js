@@ -5,7 +5,7 @@
     <TodoList :propsItems="todoItems" @childRemoveTodo="removeTodo" ></TodoList>
     <TodoFooter @clearTodo="clearTodo"></TodoFooter>
   </div>
-  <AlertModal :show="modalShow" @close="showModal" header="알림창" body="내용을 입력해주세요."></AlertModal>
+  <AlertModal :show="modalShow" @close="showModal" :header="text" body="내용을 입력해주세요."></AlertModal>
   <!--
     v-on:click = @click
     v-model : change, 바인딩(export default) 이벤트
@@ -27,7 +27,8 @@ export default {
     return {
       todoItems: [], // 생성되는 li 요소들이 배열로 저장됨 = todoItem
       cnt: 0,
-      modalShow : false
+      modalShow : false,
+      
     }
   },
 

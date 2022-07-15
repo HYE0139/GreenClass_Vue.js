@@ -18,12 +18,15 @@ export default {
         },
         getDeliveryPrice() {
             return this.numberComma(this.item.delivery_price);
-        }
+        },
+        
     },
     methods: {
         numberComma(num) {
             return String(num).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-        }
+        },
+        
+        
     }
 }
 </script>
