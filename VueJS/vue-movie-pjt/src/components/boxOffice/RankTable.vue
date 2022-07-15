@@ -10,6 +10,7 @@
       </tr>
     </thead>
     <tbody>
+      <!-- 자식요소인 RankRow 에서 받아온 item:Object 를 바인딩-->
         <RankRow :items="item" v-for="(item) in list" :key="item.movieCd"/>  
     </tbody>
   </table>
