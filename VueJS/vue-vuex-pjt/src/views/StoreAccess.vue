@@ -18,7 +18,7 @@ export default {
     },
     methods: {
         increment() {
-            this.$store.commit('increment');
+            this.$store.commit('setCount', 200);
             // store/index.js 의 mutations:increment함수를 호출
         }
     }
