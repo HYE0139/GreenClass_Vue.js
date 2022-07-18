@@ -1,11 +1,43 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import kakaoLogin from '../views/KakaoLogin.vue'
+import ProductList from '../views/ProductList.vue'
+import ProductCreate from '../views/ProductCreate.vue'
+import ProductDetail from '../views/ProductDetail.vue'
+import ProductUpdate from '../views/ProductUpdate.vue'
+import ImageInsert from '../views/ImageInsert.vue'
+import SalesList from '../views/SalesList.vue'
+
 
 const routes = [
+ 
   {
-    path: '/kakaoLogin',
-    name: 'kakaoLogin',
-    component: kakaoLogin
+    path: '/Home',
+    name: 'Home',
+    component: ProductList
+  },
+  {
+    path: '/Create',
+    name: 'ProductCreate',
+    component: ProductCreate
+  },
+  {
+    path: '/Detail',
+    name: 'ProductDetail',
+    component: ProductDetail
+  },
+  {
+    path: '/Update',
+    name: 'ProductUpdate',
+    component: ProductUpdate
+  },
+  {
+    path: '/ImageInsert',
+    name: 'ImageInsert',
+    component: ImageInsert
+  },
+  {
+    path: '/Sales',
+    name: 'SalesList',
+    component: SalesList
   },
   
 ]
