@@ -1,6 +1,6 @@
 <template>
   <footer class="mt-5 py-5 bg-dark text-white">
-    &copy; 2021
+    &copy; 2022
   </footer>
 </template>
 
