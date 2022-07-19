@@ -52,11 +52,15 @@
                     <div class="col-auto" v-if="cate1 !== ''">
                         <select class="form-select" v-model="cate2" @change="changeCate2">
                             <option :key="name" v-for="(value, name) of categoryObj[cate1]">{{ name }}</option>
+                            <!--
+                                v-for = "(value, 키값 )" 
+                                of : 배열처럼 열거할 수 없는 객체를 열거형으로 바꿔 준다.
+                            -->
                         </select>
                     </div>
 
                     <div class="col-auto" v-if="cate2 !== ''">
-                        <select class="form-select" v-model="selectedCateId">
+                        <select class="form-select" v-model="product.category_id">
                             <option :value="cate.id" :key="cate.id" v-for="cate in categoryObj[cate1][cate2]">{{ cate.value }}</option>
                         </select>
                     </div>
@@ -75,7 +79,7 @@
             <label class="col-md-3 col-form-label">출고일</label>
             <div class="col-md-9">
                 <div class="input-group mb-3">
-                    <input type="number" class="form-control" v-model="product.outbound_days">
+                    <input type="number" class="form-control" ref="outbound_days" v-model="product.outbound_days">
                     <span class="input-group-text">일 이내 출고</span>
                 </div>
             </div>
@@ -87,7 +91,7 @@
             </div>
 
             <div class="col-6 d-grid p-1">
-                <button type="button" class="btn btn-lg btn-danger" @click="ProductInsert">등록</button>
+                <button type="button" class="btn btn-lg btn-danger" @click="productInsert">등록</button>
             </div>
         </div>
 
@@ -112,7 +116,6 @@ export default {
             categoryObj: {},
             cate1: '',
             cate2: '',
-            selectedCateId: '',
         }
     },
     created() {
@@ -127,7 +130,7 @@ export default {
             categoryList.forEach(item => {
                 if(item.cate1 !== cate1) {
                     cate1 = item.cate1;
-                    this.categoryObj[cate1] = {};
+                    this.categoryObj[cate1] = {}; // categoryObj 에 cate1을 객체로 저장
                     cate2 = '';
                 }
 
@@ -138,16 +141,16 @@ export default {
                 const obj = {
                     id: item.id, //키값
                     value: item.cate3
-                }
+                } 
                 this.categoryObj[cate1][cate2].push(obj);
             });
         },
         changeCate1() {
             this.cate2 = '';
-            this.selectedCateId = '';
+            this.product.category_id = '';
         },
         changeCate2() {
-            this.selectedCateId = '';
+            this.product.category_id = '';
         },
 
         productInsert() {
@@ -166,10 +169,26 @@ export default {
                 return this.$swal('배송료를 입력하세요.');
             }
 
+           
+
             if(this.product.outbound_days === '' || this.product.outbound_days === 0) {
                 this.$refs.outbound_days.focus();
-                return this.$swal('배송료를 입력하세요.');
+                return this.$swal('출고일을 입력하세요.');
             }
+
+            this.$swal.fire({
+                title: '정말 등록 하시겠습니까?',
+                showCancelButton: true,
+                confirmButtonText: '등록',
+                cancelButtonText: '취소'
+            }).then(async result => {
+                if(result.isConfirmed){
+                    const res= this.$post('/api/productInsert', this.product);
+                    console.log(res);
+                    this.$swal.fire('저장되었습니다.', '', 'success');
+                    this.$router.push( {path: '/sales'} );
+                }
+            })
         }
     }
 }
