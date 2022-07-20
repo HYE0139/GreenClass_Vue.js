@@ -19,10 +19,15 @@
         <div class="col-md-9">
           <div class="col-md-9">
             <div class="row">
-              TODO : 썸네일 리스트 가져오는 로직 후 구현
+              <div class="col-lg-3 col-md-4 col-sm-2" :key="item.id" v-for="item in productImage.filter(c => c.type === 1)">
+                <div class="position-relative">
+                  <img :src="`/static/img/${item.product_id}/${item.type}/${item.path}`" class="img-fluid">
+                  <div class="position-absolute top-0 end-0" style="cursor:pointer;" @click="deleteImage(item)">X</div>
+                </div>
+              </div>
             </div>
             <input type="file" class="form-control" accept="image/png, image/jpeg" @change="uploadFile($event.target.files, 1)">
-            <div class="alert alert-secondary" role="alert">
+            <div class="alert alert-secondary" role="alert"> <!-- 이미지들의 용도를 구분하기 위해 1,2,3 -->
               <ul>
                 <li>이미지 사이즈 : 350 * 350</li>
                 <li>파일 사이즈 : 1MB 이하</li>
@@ -38,7 +43,12 @@
         <div class="col-md-9">
           <div class="col-md-9">
             <div class="row">
-              TODO : 제품 이미지 리스트 가져오는 로직 후 구현
+              <div class="col-lg-3 col-md-4 col-sm-2" :key="item.id" v-for="item in productImage.filter(c => c.type === 2)">
+                <div class="position-relative">
+                  <img :src="`/static/img/${item.product_id}/${item.type}/${item.path}`" class="img-fluid">
+                  <div class="position-absolute top-0 end-0" style="cursor:pointer;" @click="deleteImage(item)">X</div>
+                </div>
+              </div>
             </div>
 
             <input type="file" class="form-control" accept="image/png, image/jpeg" @change="uploadFile($event.target.files, 2)">
@@ -60,7 +70,12 @@
         <div class="col-md-9">
           <div class="col-md-9">
             <div class="row">
-              TODO : 제품 설명 이미지 리스트 가져오는 로직 후 구현
+              <div class="col-lg-3 col-md-4 col-sm-2" :key="item.id" v-for="item in productImage.filter(c => c.type === 3)">
+                <div class="position-relative">
+                  <img :src="`/static/img/${item.product_id}/${item.type}/${item.path}`" class="img-fluid">
+                  <div class="position-absolute top-0 end-0" style="cursor:pointer;" @click="deleteImage(item)">X</div>
+                </div>
+              </div>
             </div>
 
             <input type="file" class="form-control" accept="image/png, image/jpeg" @change="uploadFile($event.target.files, 3)">
@@ -96,11 +111,26 @@ export default {
   },
 
   created() {
-    this.productId = this.$route.query.product_id;
     this.productDetail = this.$store.state.sallerSelectedProduct;
+    this.getProductImage();
   },
   methods: {
-
+    async getProductImage() {
+      this.productImage = await this.$get(`/api/productImageList/${this.productDetail.id}`);
+    },
+    async uploadFile(files, type) { // (files = 업로드할 이미지, type = 구분을 위해 부여했던 숫자 )
+      console.log(files);
+      const image = await this.$base64(files[0]);
+      const formData = { image }; // 문자열로 바꾼 이미지를 객체 안에 넣음.
+      const { error } = await this.$post(`/api/upload/${this.productDetail.id}/${type}`, formData);
+      console.log(error);
+      this.getProductImage();
+    },
+    async deleteImage({id,product_id, type, path}) {
+      const result = await this.$delete(`/api/productImageDelete/${id}/${product_id}/${type}/${path}`);
+      console.log(result);
+      this.getProductImage();
+    },
   }
 }
 </script>
