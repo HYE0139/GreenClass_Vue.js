@@ -32,7 +32,9 @@
                 <button type="button" class="btn btn-info me-1"><i class="fa-solid fa-image"></i></button>
               </router-link>-->
               <button type="button" class="btn btn-info me-1" @click="goToImageInsert(idx)"><i class="fa-solid fa-image"></i></button>
-              <button type="button" class="btn btn-warning me-1"><i class="fa-solid fa-pen"></i></button>
+              <router-link :to="{ path: '/Update', query: {product_id: item.id} }">
+                <button type="button" class="btn btn-warning me-1"><i class="fa-solid fa-pen"></i></button>
+              </router-link>
               <button type="button" class="btn btn-danger"><i class="fa-solid fa-trash-can"></i></button>
               
             </td>
@@ -61,7 +63,7 @@ export default {
       goToImageInsert(idx) {
         this.$store.commit('sallerSelectedProduct', this.productList[idx]);
         this.$router.push( {path: '/image_insert'} );
-      }
+      },
     }
 }
 </script>
