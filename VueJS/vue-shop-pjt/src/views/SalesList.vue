@@ -21,7 +21,9 @@
 
         <tbody>
           <tr v-for="(item, idx) in productList" :key="item.id">
-            <td>{{item.id}}</td>
+            <td>
+              <img v-if="item.path !== null" :src="`/static/img/${item.id}/1/${item.path}`" style="height:50px; width:auto;">
+            </td>
             <td>{{item.product_name}}</td>
             <td>{{item.product_price}}</td>
             <td>{{item.delivery_price}}</td>
@@ -32,10 +34,8 @@
                 <button type="button" class="btn btn-info me-1"><i class="fa-solid fa-image"></i></button>
               </router-link>-->
               <button type="button" class="btn btn-info me-1" @click="goToImageInsert(idx)"><i class="fa-solid fa-image"></i></button>
-              <router-link :to="{ path: '/Update', query: {product_id: item.id} }">
-                <button type="button" class="btn btn-warning me-1"><i class="fa-solid fa-pen"></i></button>
-              </router-link>
-              <button type="button" class="btn btn-danger"><i class="fa-solid fa-trash-can"></i></button>
+              <button type="button" class="btn btn-warning me-1" @click="goToUpdateProduct(idx)"><i class="fa-solid fa-pen"></i></button>
+              <button type="button" class="btn btn-danger" @click="deleteProduct(item.id, idx)"><i class="fa-solid fa-trash-can"></i></button>
               
             </td>
           </tr>
@@ -64,7 +64,18 @@ export default {
         this.$store.commit('sallerSelectedProduct', this.productList[idx]);
         this.$router.push( {path: '/image_insert'} );
       },
-    }
+      goToUpdateProduct(idx) {
+        this.$store.commit('sallerSelectedProduct', this.productList[idx]);
+        this.$router.push( {path: '/Detail'} );
+      },
+      async deleteProduct(productId, idx) {
+        const res = await this.$delete(`/api/productDelete/${productId}`, {});
+        if(res.result === 1) {
+          this.productList.splice(idx, 1);
+        }
+      }
+    },
+    
 }
 </script>
 

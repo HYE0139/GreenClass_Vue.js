@@ -124,13 +124,14 @@ export default {
       const formData = { image }; // 문자열로 바꾼 이미지를 객체 안에 넣음.
       const { error } = await this.$post(`/api/upload/${this.productDetail.id}/${type}`, formData);
       console.log(error);
-      this.getProductImage();
     },
     async deleteImage({id,product_id, type, path}) {
       const result = await this.$delete(`/api/productImageDelete/${id}/${product_id}/${type}/${path}`);
       console.log(result);
-      this.getProductImage();
     },
+  },
+  updated() {
+    this.getProductImage();
   }
 }
 </script>

@@ -12,13 +12,10 @@
                     <router-link class="nav-link" to="/Home">Home</router-link>
                 </li>
                 <li class="nav-item">
-                    <router-link class="nav-link" to="/Sales">제품리스트</router-link>
-                </li>
-                <li class="nav-item">
                     <router-link class="nav-link" to="/Detail">제품상세</router-link>
                 </li>
                 <li class="nav-item">
-                    <router-link class="nav-link" to="/Create">제품등록</router-link>
+                    <router-link class="nav-link" to="/Sales">제품등록</router-link>
                 </li>
                 <li v-if="user.email === undefined">
                     <button class="btn btn-danger" type="button" @click="kakaoLogin">로그인</button>

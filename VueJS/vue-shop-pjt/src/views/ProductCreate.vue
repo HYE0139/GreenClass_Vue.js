@@ -186,7 +186,7 @@ export default {
                     const res= this.$post('/api/productInsert', this.product);
                     console.log(res);
                     this.$swal.fire('저장되었습니다.', '', 'success');
-                    this.$router.push( {path: '/sales'} );
+                    this.$router.push( {path: '/Sales'} );
                 }
             })
         }
