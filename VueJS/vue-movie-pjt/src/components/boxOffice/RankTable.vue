@@ -10,7 +10,8 @@
       </tr>
     </thead>
     <tbody>
-      <!-- 자식요소인 RankRow 에서 받아온 item:Object 를 바인딩-->
+      <!-- 부모 boxOffice Day/week에서 받아온 list 를 for문 돌리고 -->
+      <!-- 자식요소인 RankRow 에 item:Object 을 보내줌-->
         <RankRow :items="item" v-for="(item) in list" :key="item.movieCd"/>  
     </tbody>
   </table>
