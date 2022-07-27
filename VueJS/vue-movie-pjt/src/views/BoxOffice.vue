@@ -42,7 +42,7 @@ export default {
                 this.list = (await this.getBoxOfficeByWeek(targetDt)).boxOfficeResult.weeklyBoxOfficeList;
                 break;
             }
-        }
+        }   
     },
     created() {
         const d = new Date();
